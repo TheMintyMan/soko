@@ -24,7 +24,7 @@ process_callback = 0
 wait_time = 0.1
 one_shot = true
 
-[node name="button_hb" type="Area3D" parent="."]
+[node name="player_button_hb" type="Area3D" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="button_hb"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="player_button_hb"]
 shape = SubResource("BoxShape3D_rc2ur")

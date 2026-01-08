@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://bo06dwg0y2lrb"]
+
+[ext_resource type="PackedScene" uid="uid://crmmstia7s4lt" path="res://src/wall.tscn" id="1_i06r4"]
+[ext_resource type="Script" uid="uid://bl41oriato6o0" path="res://src/leap_box.gd" id="2_xuw8r"]
+
+[node name="leap_box" groups=["leapable"] instance=ExtResource("1_i06r4")]
+script = ExtResource("2_xuw8r")

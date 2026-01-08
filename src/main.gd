@@ -24,7 +24,7 @@ func goto_level(index):
 	level_index = index
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if (Input.is_action_just_pressed("previous_level")):
 		previous_level()
 	elif (Input.is_action_just_pressed("next_level")):

@@ -11,7 +11,7 @@ func move(dir:Vector2):
 func undo_move(dir:Vector2):
 	Global.move_to_grid_pos(self, Global.get_grid_pos(self) - dir)
 
-func handle_wall(_collider:Node3D, dir:Vector2) -> bool:
+func handle_wall(_collider:Node3D, _dir:Vector2) -> bool:
 	return false
 
 func handle_push(collider:Node3D, dir:Vector2) -> bool:
