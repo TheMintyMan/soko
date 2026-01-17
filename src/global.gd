@@ -37,7 +37,10 @@ func grid_check(pos:Vector2) -> Node3D:
 	return $RayCast3D.get_collider()
 	
 func move_to_grid_pos(n:Node3D, pos:Vector2):
-	n.global_position = Vector3(pos.x, n.current_height, pos.y)
+	if (n.get('current_height') != null):
+		n.global_position = Vector3(pos.x, n.current_height, pos.y)
+	else:
+		n.global_position = Vector3(pos.x, n.global_position.y, pos.y)
 	
 func undo():
 	emit_signal("do_undo")
