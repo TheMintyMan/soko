@@ -65,7 +65,7 @@ func grid_check(pos:Vector2) -> Node3D:
 	
 func move_to_grid_pos(n:Node3D, pos:Vector2):
 	if (n.get('current_height') != null):
-		n.global_position = Vector3(pos.x, n.current_height, pos.y)
+		n.global_position = Vector3(pos.x, n.current_height/2, pos.y)
 	else:
 		n.global_position = Vector3(pos.x, n.global_position.y, pos.y)
 	

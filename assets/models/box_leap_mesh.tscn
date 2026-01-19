@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3fsujm2wm1e0"]
+
+[ext_resource type="PackedScene" uid="uid://dxim282k8tw2t" path="res://assets/models/src_models/box_leap_mesh.glb" id="1_7cmfw"]
+[ext_resource type="ArrayMesh" uid="uid://b6qsyiylrmjeo" path="res://assets/models/box_leap_mesh.tres" id="2_l2qd4"]
+
+[node name="box_leap_mesh" instance=ExtResource("1_7cmfw")]
+
+[node name="box_leap_mesh" parent="." index="0"]
+mesh = ExtResource("2_l2qd4")

@@ -11,6 +11,8 @@ Tasklist
 Task list:
 - [x] Update how the height works in the game
 - [x] Set up the grid to be 8 x 8
+- [x] replace the cubes with atleast my models. Make sure they're .gltf file type
+- [x] Set up directions so that we can use directions for pull
 - [ ] Check for what's underneath on the next tile.
 - [ ] Create a home
 - [ ] Eat mechanic

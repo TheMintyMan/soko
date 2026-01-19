@@ -1,7 +1,9 @@
 extends StaticBody3D
 
 @export var leap_count: int = 1
-var current_height: int
+var current_height: float = 0.0
+signal leap_count_changed(count)
+var facing_dir: int = 0
 
 var action_manager = ActionManager.new({
 	"move": [move, undo_move]
@@ -15,6 +17,8 @@ func _ready() -> void:
 	Global.register_player(self)
 	print("current height: ", current_height)
 	print('ready')
+	await get_tree().create_timer(0.1).timeout
+	emit_signal("leap_count_changed", leap_count)
 
 func get_input_direction() -> Vector2:
 	#if $Timer.time_left != 0:
@@ -23,12 +27,20 @@ func get_input_direction() -> Vector2:
 	var v = Vector2()
 	if Input.is_action_just_pressed("playerDown"):
 		v.y += 1
+		self.global_rotation = Vector3(0, deg_to_rad(0), 0)
+		facing_dir = 180
 	if Input.is_action_just_pressed("playerUp"):
 		v.y -= 1
+		self.global_rotation = Vector3(0, deg_to_rad(180), 0)
+		facing_dir = 0
 	if Input.is_action_just_pressed("playerLeft"):
 		v.x -= 1
+		self.global_rotation = Vector3(0, deg_to_rad(-90), 0)
+		facing_dir = -90
 	if Input.is_action_just_pressed("playerRight"):
 		v.x += 1
+		self.global_rotation = Vector3(0, deg_to_rad(90), 0)
+		facing_dir = 90
 		
 	if v.x != 0 and v.y != 0:
 		return Vector2()
@@ -67,6 +79,7 @@ func move(dir):
 
 func _on_food_eaten(value: int) -> void:
 	leap_count += value
+	emit_signal("leap_count_changed", leap_count)
 	print("yummyy, current leap count is ", leap_count)
 
 func try_leap(height_diff: int, new_pos: Vector2) -> void:
@@ -81,6 +94,7 @@ func try_leap(height_diff: int, new_pos: Vector2) -> void:
 		current_height += 1
 		leap_count -= 1
 		Global.move_to_grid_pos(self, new_pos)
+		emit_signal("leap_count_changed", leap_count)
 		print("you just leaped")
 
 func undo_move(dir):
