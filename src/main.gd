@@ -22,7 +22,7 @@ func goto_level(index):
 	current_level = levels[index].instantiate()
 	add_child(current_level)
 	level_index = index
-
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if (Input.is_action_just_pressed("previous_level")):
