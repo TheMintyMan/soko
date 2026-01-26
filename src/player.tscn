@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cuqk6ein0cmrj"]
+[gd_scene load_steps=6 format=3 uid="uid://cuqk6ein0cmrj"]
 
 [ext_resource type="Script" uid="uid://cqx8h1saqe1di" path="res://src/player.gd" id="1_lowyb"]
+[ext_resource type="PackedScene" uid="uid://b0msjixjwi0ug" path="res://assets/models/froggy_mesh.tscn" id="2_gmfve"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rc2ur"]
 
@@ -16,6 +17,7 @@ script = ExtResource("1_lowyb")
 shape = SubResource("BoxShape3D_rc2ur")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("BoxMesh_lowyb")
 surface_material_override/0 = SubResource("StandardMaterial3D_lowyb")
 
@@ -28,3 +30,5 @@ one_shot = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="player_button_hb"]
 shape = SubResource("BoxShape3D_rc2ur")
+
+[node name="froggy_mesh" parent="." instance=ExtResource("2_gmfve")]
