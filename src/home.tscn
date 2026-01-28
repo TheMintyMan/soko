@@ -3,7 +3,13 @@
 [ext_resource type="Script" uid="uid://brlmy5ytrepmk" path="res://src/home.gd" id="1_4gm1x"]
 [ext_resource type="PackedScene" uid="uid://51w4gkfjtvoj" path="res://assets/models/home_mesh.tscn" id="1_033df"]
 
-[node name="home" type="Node3D" unique_id=1422672344]
+[sub_resource type="BoxShape3D" id="BoxShape3D_4gm1x"]
+
+[node name="home" type="StaticBody3D" unique_id=1153236180 groups=["home"]]
 script = ExtResource("1_4gm1x")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=64092682]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_4gm1x")
 
 [node name="home_mesh" parent="." unique_id=1106055042 instance=ExtResource("1_033df")]

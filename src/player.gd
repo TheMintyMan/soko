@@ -1,11 +1,9 @@
 extends StaticBody3D
 class_name Player
 
-@export var leap_count: int = 1
-var current_height: float = 0.0
-var leapable_height: float = 0.5
+@export var leap_count: int = 0
+@export var leapable_height: float = 0.5
 signal leap_count_changed(count: int)
-signal do_stuff
 var facing_dir: Vector2 = Vector2.ZERO
 @onready var level_root: Level = get_tree().current_scene
 
@@ -14,7 +12,7 @@ var action_manager = ActionManager.new({
 })
 
 func _init() -> void:
-	current_height = 0
+	pass
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -25,7 +23,6 @@ func _ready() -> void:
 	else:
 		facing_dir.y = sign(forward.z)
 	
-	print("current height: ", current_height)
 	print('ready')
 	print("currently facing: ", facing_dir)
 	await get_tree().create_timer(0.1).timeout
@@ -59,24 +56,28 @@ func get_input_direction() -> Vector2:
 	
 func move(dir):
 	var grid_pos = Global.get_grid_pos(self)
-	var new_pos = grid_pos + dir
+	var new_grid_pos: Vector2 = grid_pos + dir
+	var new_world_pos: Vector3 = Vector3(new_grid_pos.x, 0,new_grid_pos.y)
 	
-	var collider = Global.grid_check(new_pos)
+	var collider = Global.grid_check(new_grid_pos)
 	
 	if collider == null:
-		current_height = 0
-		Global.move_to_grid_pos(self, new_pos)
+		Global.move_to_grid_pos(self, new_world_pos)
 		return
 	
-	var collider_height: int = collider.global_position.y + 1
-	var height_diff: int = collider_height - current_height
+	var collider_height: int = collider.global_position.y
+	var height_diff: int = collider_height - self.global_position.y
 	
 	if collider is Food:
 		collider.eat()
 		on_food_eaten(1) # Arbitrary value currently
+	
+	if collider is Home:
+		print("The frog has entered home")
+		Global.move_to_grid_pos(self, new_world_pos)
 		
 	if collider.is_in_group("leapable"):
-		try_leap(height_diff, new_pos)
+		try_leap(height_diff, collider.position)
 	
 	if collider.is_in_group("wall"):
 		print('wall!')
@@ -84,23 +85,22 @@ func move(dir):
 	
 	if collider.is_in_group("pushable"):
 		if collider.push(dir):
-			Global.move_to_grid_pos(self, new_pos)
+			Global.move_to_grid_pos(self, new_world_pos)
 
 func on_food_eaten(value: int) -> void:
 	leap_count += value 
 	emit_signal("leap_count_changed", leap_count)
 	print("yummyy, current leap count is ", leap_count)
 
-func try_leap(height_diff: int, new_pos: Vector2) -> void:
-	if height_diff == 0:
+func try_leap(height_diff: int, new_pos: Vector3) -> void:
+	if height_diff <= 0:
 		Global.move_to_grid_pos(self, new_pos)
 		return
 	
-	if height_diff == 1:
+	if height_diff <= leapable_height:
 		if leap_count < 1:
 			print("cannot leap again")
 			return 
-		current_height += 1
 		leap_count -= 1
 		Global.move_to_grid_pos(self, new_pos)
 		emit_signal("leap_count_changed", leap_count)

@@ -17,16 +17,22 @@ func get_grid_pos(n:Node3D) -> Vector2:
 		n.global_position.z/TILESIZE
 	)
 
+func height_check(n: Node3D, pos: Vector2) -> float:
+	var new_grid_node = Global.grid_check(pos)
+	var height: float
+	if new_grid_node == null:
+		height = n.position.y
+	else:
+		height = new_grid_node.postion.y
+	return height
+
 func grid_check(pos:Vector2) -> Node3D:
 	$RayCast3D.global_position = Vector3(pos.x*TILESIZE, $RayCast3D.global_position.y, pos.y*TILESIZE)
 	$RayCast3D.force_raycast_update()
 	return $RayCast3D.get_collider()
 	
-func move_to_grid_pos(n:Node3D, pos:Vector2):
-	if (n.get('current_height') != null):
-		n.global_position = Vector3(pos.x, n.current_height/2, pos.y)
-	else:
-		n.global_position = Vector3(pos.x, n.global_position.y, pos.y)
+func move_to_grid_pos(n:Node3D, pos:Vector3):
+	n.global_position = Vector3(pos.x, pos.y, pos.z)
 	
 func undo():
 	emit_signal("do_undo")
