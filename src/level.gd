@@ -1,10 +1,10 @@
 extends Node
 class_name Level
-signal win_condition_met
+signal win_condition_met (wincon: bool)
 
 var food_on_grid: int = 0
 var frog_home: Node3D = null
-var player: Player = null
+var player: Player
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -40,17 +40,19 @@ func register_home(home_node:Node) -> void:
 		frog_home = home_node
 		print("home registered")
 	return
+	
+func get_home() -> Home:
+	return frog_home
 
 func check_win_condition() -> void:
-	if (!(food_on_grid == 0 && frog_home == null)):
+	if (food_on_grid != 0):
+		win_condition_met.emit(false)
 		print("win check: not yet won")
-	
-	if(!frog_home):
 		return
 	
 	if food_on_grid == 0 && player.global_position == frog_home.global_position:
-		win_condition_met.emit()
+		win_condition_met.emit(true)
 		print("win check: won")
-	else:
-		win_condition_met.emit()
+	elif food_on_grid == 0 && frog_home == null:
+		win_condition_met.emit(false)
 		print("win check: won")

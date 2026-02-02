@@ -37,3 +37,8 @@ func move_to_grid_pos(n:Node3D, pos:Vector3):
 func undo():
 	emit_signal("do_undo")
 	time_index -= 1
+	
+func convert_rot_dir(rotation: float) -> Vector2:
+	var dir: Vector2 = Vector2(cos(rotation), sin(rotation))
+	var dir_int: Vector2i = Vector2i(round(dir.x), round(dir.y))
+	return dir_int

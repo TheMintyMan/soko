@@ -5,6 +5,7 @@ class_name Player
 @export var leapable_height: float = 0.5
 signal leap_count_changed(count: int)
 var facing_dir: Vector2 = Vector2.ZERO
+var in_house: bool = false
 @onready var level_root: Level = get_tree().current_scene
 
 var action_manager = ActionManager.new({
@@ -60,6 +61,15 @@ func move(dir):
 	var new_world_pos: Vector3 = Vector3(new_grid_pos.x, 0,new_grid_pos.y)
 	
 	var collider = Global.grid_check(new_grid_pos)
+	var home_dir = Global.convert_rot_dir(level_root.get_home().global_rotation.y+90)
+	
+	if in_house:
+		if dir != home_dir:
+			print("Frog not facing the same direction as the home", Global.convert_rot_dir(level_root.get_home().global_rotation.y))
+			return
+		else:
+			in_house = false
+			Global.move_to_grid_pos(self, new_world_pos)
 	
 	if collider == null:
 		Global.move_to_grid_pos(self, new_world_pos)
@@ -70,8 +80,14 @@ func move(dir):
 		on_food_eaten(1) # Arbitrary value currently
 	
 	if collider is Home:
+		if dir != Vector2(home_dir.x*-1, home_dir.y*-1):
+			print("Cannot enter this way")
+			return
 		print("The frog has entered home")
+		in_house = true
+		self.rotation = collider.rotation
 		Global.move_to_grid_pos(self, new_world_pos)
+		level_root.check_win_condition()
 		
 	if collider.is_in_group("leapable"):
 		try_leap(get_height_diff(self, collider), collider.position)
