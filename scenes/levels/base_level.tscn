@@ -4,12 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://cuqk6ein0cmrj" path="res://src/player.tscn" id="1_orunl"]
 [ext_resource type="PackedScene" uid="uid://crmmstia7s4lt" path="res://src/objects/wall.tscn" id="2_g46sj"]
 [ext_resource type="Texture2D" uid="uid://cheju5heji08t" path="res://assets/textures/grid_border.png" id="2_j7gcg"]
-[ext_resource type="PackedScene" uid="uid://r5mspbrk5am3" path="res://src/objects/pushable.tscn" id="3_pneeb"]
 [ext_resource type="PackedScene" uid="uid://df74d6rxmrbfp" path="res://scenes/ui/game_ui.tscn" id="6_3rriw"]
-[ext_resource type="PackedScene" uid="uid://dj24k6kohs1yd" path="res://src/objects/food.tscn" id="6_yotv0"]
-[ext_resource type="PackedScene" uid="uid://bo06dwg0y2lrb" path="res://src/objects/leap_box.tscn" id="7_o5c27"]
 [ext_resource type="PackedScene" uid="uid://b030330rh7v25" path="res://src/home.tscn" id="8_53c65"]
-[ext_resource type="PackedScene" uid="uid://bulcsytki81dn" path="res://src/objects/pullable.tscn" id="9_43bxi"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_n8dmd"]
 size = Vector2(100, 100)
@@ -62,9 +58,6 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 4, 0
 leap_count = 1
 
 [node name="walls" type="Node" parent="." unique_id=1884262265]
-
-[node name="wall" parent="walls" unique_id=323221267 instance=ExtResource("2_g46sj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -5)
 
 [node name="wall2" parent="walls" unique_id=234224507 instance=ExtResource("2_g46sj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -3)
@@ -174,30 +167,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -7)
 [node name="wall5" parent="walls" unique_id=1056296293 instance=ExtResource("2_g46sj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -1)
 
-[node name="boxbox" parent="." unique_id=853095624 instance=ExtResource("3_pneeb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -6)
-
-[node name="food" parent="." unique_id=1922465426 instance=ExtResource("6_yotv0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, -4)
-
-[node name="food2" parent="." unique_id=1888753264 instance=ExtResource("6_yotv0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -4)
-
-[node name="leap_box" parent="." unique_id=1560814513 instance=ExtResource("7_o5c27")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -5)
-
-[node name="leap_box3" parent="." unique_id=1669102072 instance=ExtResource("7_o5c27")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.5, -4)
-
-[node name="leap_box2" parent="." unique_id=1149689837 instance=ExtResource("7_o5c27")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -3)
-
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=835282202]
 
 [node name="Game_UI" parent="CanvasLayer" unique_id=531994181 instance=ExtResource("6_3rriw")]
 
-[node name="home" parent="." unique_id=1422672344 instance=ExtResource("8_53c65")]
+[node name="home" parent="." unique_id=1153236180 instance=ExtResource("8_53c65")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -7)
 
-[node name="pullable" parent="." unique_id=999626576 instance=ExtResource("9_43bxi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -3)
+[node name="Label3D" type="Label3D" parent="." unique_id=743755706]
+process_mode = 4
+physics_interpolation_mode = 2
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -2.5, 0, -9)
+modulate = Color(0.41311836, 0.4446169, 0.38178962, 1)
+text = "level 1: 
+finding home"
+font_size = 120
+outline_size = 0
+horizontal_alignment = 2
+vertical_alignment = 0

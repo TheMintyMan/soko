@@ -39,7 +39,7 @@ func undo():
 	emit_signal("do_undo")
 	time_index -= 1
 	
-func convert_rot_dir(rotation: float) -> Vector2:
-	var dir: Vector2 = Vector2(cos(rotation), sin(rotation))
+func convert_rot_dir(rot: float) -> Vector2:
+	var dir: Vector2 = Vector2(cos(rot), sin(rot))
 	var dir_int: Vector2i = Vector2i(round(dir.x), round(dir.y))
 	return dir_int

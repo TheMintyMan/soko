@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bscjlso2ecyr8" path="res://scenes/ui/main_menu.gd" id="1_guuao"]
 [ext_resource type="Theme" uid="uid://bm1af7yexnpiq" path="res://scenes/ui/ui_themes_01.tres" id="2_fe2o3"]
+[ext_resource type="AudioStream" uid="uid://cwqwmamkmtfxb" path="res://assets/audio/little_frogg_menu_hover.wav" id="3_1g8jr"]
 
 [node name="MainMenu" type="Node2D" unique_id=338212714]
 script = ExtResource("1_guuao")
@@ -151,13 +152,23 @@ offset_bottom = 1101.0
 mouse_filter = 2
 color = Color(0.27719998, 0.63, 0.3654, 1)
 
+[node name="audio_button_hover" type="AudioStreamPlayer" parent="." unique_id=1059699106]
+stream = ExtResource("3_1g8jr")
+bus = &"SFX"
+
+[connection signal="mouse_entered" from="CenterContainer/MainButtons/play" to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="CenterContainer/MainButtons/play" to="." method="_on_play_pressed"]
+[connection signal="mouse_entered" from="CenterContainer/MainButtons/settings" to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="CenterContainer/MainButtons/settings" to="." method="_on_settings_pressed"]
+[connection signal="mouse_entered" from="CenterContainer/MainButtons/credits" to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="CenterContainer/MainButtons/credits" to="." method="_on_credits_pressed"]
+[connection signal="mouse_entered" from="CenterContainer/MainButtons/quit" to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="CenterContainer/MainButtons/quit" to="." method="_on_quit_pressed"]
 [connection signal="toggled" from="CenterContainer/SettingsMenu/FULLSCREEN" to="." method="_on_fullscreen_toggled"]
 [connection signal="value_changed" from="CenterContainer/SettingsMenu/mainvolslider" to="." method="_on_mainvolslider_value_changed"]
 [connection signal="value_changed" from="CenterContainer/SettingsMenu/musicvolslider" to="." method="_on_musicvolslider_value_changed"]
 [connection signal="value_changed" from="CenterContainer/SettingsMenu/sfxvolslider" to="." method="_on_sfxvolslider_value_changed"]
+[connection signal="mouse_entered" from="CenterContainer/SettingsMenu/back" to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="CenterContainer/SettingsMenu/back" to="." method="_on_back_pressed"]
+[connection signal="mouse_entered" from="CenterContainer/CreditsMenu/back" to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="CenterContainer/CreditsMenu/back" to="." method="_on_back_pressed"]

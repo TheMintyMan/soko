@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://7ag6ivrttlhq"]
+
+[ext_resource type="PackedScene" uid="uid://bkbbgk2sehuoc" path="res://assets/models/src_models/box_mesh.glb" id="1_1kt66"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1kt66"]
+albedo_color = Color(0.21705714, 0.5960915, 0.77775, 1)
+
+[node name="box_mesh" unique_id=414116657 instance=ExtResource("1_1kt66")]
+transform = Transform3D(1, 0, 0, 0, 0.19999999, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="box_mesh" parent="." index="0"]
+material_override = SubResource("StandardMaterial3D_1kt66")

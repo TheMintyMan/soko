@@ -3,9 +3,16 @@ extends Node2D
 func _ready() -> void:
 	%MainButtons.grab_focus()
 	%FULLSCREEN.button_pressed = true if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN else false
-	%mainvolslider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master")))
-	%musicvolslider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("MUSIC")))
-	%sfxvolslider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("SFX")))
+	#%mainvolslider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master")))
+	%mainvolslider.value = 0.5
+	#%musicvolslider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("MUSIC")))
+	%musicvolslider.value = 0.5
+	#%sfxvolslider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("SFX")))
+	%sfxvolslider.value = 0.5
+	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("Master"), 0.5)
+	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("MUSIC"), 0.5)
+	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("SFX"), 0.5)
+	
 	
 func _on_play_pressed() -> void:
 	var main = get_tree().get_nodes_in_group("main").pop_back()
@@ -53,3 +60,7 @@ func _on_musicvolslider_value_changed(value: float) -> void:
 
 func _on_sfxvolslider_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("SFX"), value)
+
+
+func _on_mouse_entered() -> void:
+	$audio_button_hover.play()

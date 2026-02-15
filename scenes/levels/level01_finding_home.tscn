@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://cderl44wgxp6p"]
+
+[ext_resource type="PackedScene" uid="uid://643pky6fq36y" path="res://scenes/levels/base_level.tscn" id="1_ko10n"]
+[ext_resource type="PackedScene" uid="uid://crmmstia7s4lt" path="res://src/objects/wall.tscn" id="2_t0arp"]
+
+[node name="BaseLevel" unique_id=688875371 instance=ExtResource("1_ko10n")]
+
+[node name="player" parent="." index="5" unique_id=788165335]
+leap_count = 0
+
+[node name="wall" parent="walls" parent_id_path=PackedInt32Array(1884262265) index="36" unique_id=816203989 instance=ExtResource("2_t0arp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -3)
+
+[node name="wall39" parent="walls" parent_id_path=PackedInt32Array(1884262265) index="37" unique_id=1567126187 instance=ExtResource("2_t0arp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -4)
+
+[node name="wall42" parent="walls" parent_id_path=PackedInt32Array(1884262265) index="38" unique_id=888520835 instance=ExtResource("2_t0arp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -4)
+
+[node name="wall41" parent="walls" parent_id_path=PackedInt32Array(1884262265) index="39" unique_id=100394874 instance=ExtResource("2_t0arp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 0)
+
+[node name="wall43" parent="walls" parent_id_path=PackedInt32Array(1884262265) index="40" unique_id=684967723 instance=ExtResource("2_t0arp")]
+
+[node name="wall44" parent="walls" parent_id_path=PackedInt32Array(1884262265) index="41" unique_id=899986368 instance=ExtResource("2_t0arp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7)
+
+[node name="wall45" parent="walls" parent_id_path=PackedInt32Array(1884262265) index="42" unique_id=2096555318 instance=ExtResource("2_t0arp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -7)
+
+[node name="wall38" parent="walls" parent_id_path=PackedInt32Array(1884262265) index="43" unique_id=668779717 instance=ExtResource("2_t0arp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -3)
+
+[node name="home" parent="." index="8" unique_id=1153236180]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -6)

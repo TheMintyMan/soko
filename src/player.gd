@@ -8,6 +8,7 @@ var facing_dir: Vector2 = Vector2.ZERO
 var in_house: bool = false
 var level_root: Level
 var main: Main
+var home_dir
 
 var action_manager = ActionManager.new({
 	"move": [move, undo_move],
@@ -27,6 +28,8 @@ func _ready() -> void:
 	print("currently facing: ", facing_dir)
 	await get_tree().create_timer(0.1).timeout
 	emit_signal("leap_count_changed", leap_count)
+	
+	home_dir = Global.convert_rot_dir(level_root.get_home().global_rotation.y+90)
 
 func get_input_direction() -> Vector2:
 	#if $Timer.time_left != 0:
@@ -64,8 +67,8 @@ func move(dir):
 	var new_world_pos: Vector3 = Vector3(new_grid_pos.x, 0,new_grid_pos.y)
 	
 	var collider = Global.grid_check(new_grid_pos)
-	var collider_food = Global.grid_check(new_grid_pos, 2)
-	var home_dir = Global.convert_rot_dir(level_root.get_home().global_rotation.y+90)
+	var collider_02 = Global.grid_check(new_grid_pos, 2)
+	
 	
 	facing_dir = dir
 	
@@ -77,31 +80,36 @@ func move(dir):
 			in_house = false
 			Global.move_to_grid_pos(self, new_world_pos)
 			
-	if collider_food is Food:
-		if get_height_diff(self, collider_food, false) <= 0:
-			collider_food.eat()
+	if collider_02 is Food:
+		if get_height_diff(self, collider_02, false) <= 0:
+			collider_02.eat()
 			on_food_eaten(1) # Arbitrary value currently
 			return
 		else:
 			pass
 	
+	if collider_02 is Home:
+		if get_height_diff(self, collider_02, false) <= 0:
+			new_world_pos.y = self.position.y
+			if dir != Vector2(home_dir.x*-1, home_dir.y*-1):
+				print("Cannot enter this way")
+				return
+			print("The frog has entered home")
+			self.rotation = collider_02.rotation
+			facing_dir = convert_rot_dir()
+			Global.move_to_grid_pos(self, new_world_pos)
+			in_house = true
+			level_root.check_win_condition()
+		else:
+			return
+	
 	if collider == null:
 		Global.move_to_grid_pos(self, new_world_pos)
 		return
 
-	if collider is Home:
-		if dir != Vector2(home_dir.x*-1, home_dir.y*-1):
-			print("Cannot enter this way")
-			return
-		print("The frog has entered home")
-		in_house = true
-		self.rotation = collider.rotation
-		facing_dir = convert_rot_dir()
-		Global.move_to_grid_pos(self, new_world_pos)
-		level_root.check_win_condition()
-		
 	if collider.is_in_group("leapable"):
 		try_leap(get_height_diff(self, collider), collider.position)
+		return
 		
 	if collider.is_in_group("wall"):
 		print('wall!')
@@ -128,6 +136,9 @@ func on_food_eaten(value: int) -> void:
 
 ## Calculates the height difference
 func get_height_diff(input: Node3D, collider: Node3D, check_collision_height:bool = true) -> float:
+	if check_collision_height == false:
+		print("height diff = ", collider.global_position.y - input.global_position.y)
+		return(collider.global_position.y - input.global_position.y)
 	for child in collider.get_children():
 		if child is CollisionShape3D:
 			var shape = child.shape
@@ -135,9 +146,7 @@ func get_height_diff(input: Node3D, collider: Node3D, check_collision_height:boo
 				if shape is BoxShape3D:
 					print("height diff = ", (shape.size.y + collider.position.y) - input.global_position.y)
 					return (shape.size.y + collider.position.y) - input.global_position.y
-			else:
-				print("height diff = ", collider.position.y - input.global_position.y)
-				return(collider.position.y - input.global_position.y)
+				
 	print("no collider with BoxShape found")
 			
 	return 0.0

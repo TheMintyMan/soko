@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://cykegwa3skkx1"]
+
+[ext_resource type="PackedScene" uid="uid://643pky6fq36y" path="res://scenes/levels/base_level.tscn" id="1_yjvbj"]
+[ext_resource type="PackedScene" uid="uid://bo06dwg0y2lrb" path="res://src/objects/leap_box.tscn" id="2_c2p8j"]
+[ext_resource type="PackedScene" uid="uid://cafh2r1mnp0p2" path="res://src/objects/water.tscn" id="3_mat8m"]
+[ext_resource type="PackedScene" uid="uid://dj24k6kohs1yd" path="res://src/objects/food.tscn" id="4_qnv2w"]
+
+[node name="BaseLevel" unique_id=688875371 instance=ExtResource("1_yjvbj")]
+
+[node name="player" parent="." index="5" unique_id=788165335]
+leap_count = 0
+
+[node name="home" parent="." index="8" unique_id=1153236180]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -7)
+
+[node name="Label3D" parent="." index="9" unique_id=743755706]
+text = "level 2: 
+frogs can't swim
+"
+
+[node name="leap_box2" parent="." index="10" unique_id=75867206 instance=ExtResource("2_c2p8j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -3)
+
+[node name="leap_box3" parent="." index="11" unique_id=1835454092 instance=ExtResource("2_c2p8j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -3)
+
+[node name="wall" parent="." index="12" unique_id=816203989 instance=ExtResource("3_mat8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -3)
+
+[node name="wall14" parent="." index="13" unique_id=378637637 instance=ExtResource("3_mat8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -4)
+
+[node name="wall15" parent="." index="14" unique_id=242442555 instance=ExtResource("3_mat8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -4)
+
+[node name="wall16" parent="." index="15" unique_id=1558793024 instance=ExtResource("3_mat8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -4)
+
+[node name="wall17" parent="." index="16" unique_id=1944290370 instance=ExtResource("3_mat8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -4)
+
+[node name="wall18" parent="." index="17" unique_id=1294077554 instance=ExtResource("3_mat8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="wall8" parent="." index="18" unique_id=1417753378 instance=ExtResource("3_mat8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -2)
+
+[node name="wall9" parent="." index="19" unique_id=1220665351 instance=ExtResource("3_mat8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -2)
+
+[node name="wall21" parent="." index="20" unique_id=2059386558 instance=ExtResource("3_mat8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+
+[node name="wall10" parent="." index="21" unique_id=1704736703 instance=ExtResource("3_mat8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
+
+[node name="wall11" parent="." index="22" unique_id=611826940 instance=ExtResource("3_mat8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -2)
+
+[node name="wall19" parent="." index="23" unique_id=1932540697 instance=ExtResource("3_mat8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -1)
+
+[node name="wall20" parent="." index="24" unique_id=1430783599 instance=ExtResource("3_mat8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
+
+[node name="wall12" parent="." index="25" unique_id=1176456339 instance=ExtResource("3_mat8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="wall6" parent="." index="26" unique_id=2109008252 instance=ExtResource("3_mat8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -3)
+
+[node name="wall13" parent="." index="27" unique_id=288625686 instance=ExtResource("3_mat8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -4)
+
+[node name="wall7" parent="." index="28" unique_id=62435265 instance=ExtResource("3_mat8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -2)
+
+[node name="wall2" parent="." index="29" unique_id=1511128575 instance=ExtResource("3_mat8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -3)
+
+[node name="wall3" parent="." index="30" unique_id=1555108805 instance=ExtResource("3_mat8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -3)
+
+[node name="wall4" parent="." index="31" unique_id=1577748070 instance=ExtResource("3_mat8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+
+[node name="wall5" parent="." index="32" unique_id=1352612684 instance=ExtResource("3_mat8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -3)
+
+[node name="food" parent="." index="33" unique_id=20428002 instance=ExtResource("4_qnv2w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -1)
